@@ -5,15 +5,30 @@ import ReactDOM from 'react-dom';
 import './index.css'
 
 // setup vars ||varibles
-const author = "Marilyn Sadler" ;
-const title = "It's Not Easy Being a Bunny (Beginner Books(R)";
-const img = 'https://images-na.ssl-images-amazon.com/images/I/81WZ6QvGZ2L._AC_UL906_SR906,200_.jpg';
+
+// data
+const firstBook = {
+  img :'https://images-na.ssl-images-amazon.com/images/I/81WZ6QvGZ2L._AC_UL906_SR906,200_.jpg',
+  author: "Marilyn Sadler" ,
+  title: "It's Not Easy Being a Bunny ",
+}
+
+const secondBook = {
+  img :'https://images-na.ssl-images-amazon.com/images/I/91xUsdujK3L._AC_UL906_SR906,600_.jpg',
+  author: "Dav Pilkey" ,
+  title: "Cat Kid Comic Club: On Purpose: A Graphic Novel (Cat Kid Comic Club #3): From the Creator of Dog Man ",
+}
+
 
 function BookList() {
   return (
     <section>
       <h1 className='center'>Book List</h1>
-      <Book></Book>
+      <Book img={firstBook.img} title={firstBook.title} author={firstBook.author} >
+        <p>This is a (children) from a book </p>
+        <p>This is another (children) from a book </p>
+      </Book>
+      <Book img={secondBook.img} title={secondBook.title} author={secondBook.author}></Book>
     </section>
   )
 }
@@ -22,16 +37,23 @@ function BookList() {
 // 1st component
 // explicit return
 // a variable outside the function
-
-const Book = () => {
+// write parameters inside () = (props) = properties
+const Book = ({img, title, author, children}) => {
+  // // destructure : avoids repeating props multiple times
+  // const {img, title, author} = props;
+  // console.log(props);
   return <article className=' container center'>
     This is a book
     <img className='img' src={img} alt=''></img>
     <h1>{title}</h1>
     {/* we can invoke methods like //toUpperCase() */}
-    <h3>{author.toUpperCase()}</h3>
+    <p>{author}</p>
    {/* <p>{let x = 6}</p> */}
    <p>${6 + 6}.00</p>
+   {/* <p>{job}</p> */}
+   {/* <p>{props.title}</p> */}
+   {/* <p>{number}</p> */}
+   {children}
   </article>
 }
 
